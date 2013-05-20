@@ -1,7 +1,7 @@
-// pluck app example
+// razorblade app example
 
 	// libararies
-	var pluck = require('pluck');
+	var razor = require('razorblade');
 		
 	// get settings
 	var pages = ['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'];
@@ -13,6 +13,6 @@
 		"href" : "attr('href')"
 	};
 
-	pluck(pages, selector, fields, 'output', 3);
+	razor(pages, selector, fields, 'output', 3);
 	
-	pluck("output/pages.json", selector, fields, 'output', 3);	
+	razor("output/pages.json", selector, fields, 'output', 3);	
