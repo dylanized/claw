@@ -1,0 +1,9 @@
+{
+  "name": "pluck",
+  "description": "Simple web scraper",
+  "version": "0.0.1",
+  "author": {
+    "name": "Dylan Hassinger",
+    "email": "d@dylanized.com"
+  }
+}
