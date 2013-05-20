@@ -1,0 +1,10 @@
+{
+	"pages" : ["http://www.bing.com/search?q=hello", "http://www.bing.com/search?q=goodbye"],
+	"selector" : "h3 a",
+	"fields" : {
+		"text" : "text()",
+		"href" : "attr('href')"
+	},
+	"outputFolder" : "output",
+	"delay" : 5
+}

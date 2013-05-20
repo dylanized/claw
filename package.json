@@ -14,12 +14,15 @@
     "type": "git",
     "url": "https://github.com/dylanized/claw.git"
   },
+  "bin": {
+  	"claw" : "index.js"
+  },
+  "preferGlobal" : "true",
   "dependencies": {
     "path": "~0.4.9",
     "nconf": "~0.6.7",
     "request": "~2.21.0",
     "cheerio": "~0.11.0",
-    "fs": "0.0.0",
     "csv": "~0.3.0",
     "underscore": "~1.4.4",
     "jsonfile": "0.0.1",

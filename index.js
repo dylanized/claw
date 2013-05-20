@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // the claw
 
 	// TODOS
@@ -7,6 +9,9 @@
 	//  - accept a callback function
 	//  - add http user-agent override
 	//  - toggle exporting of each type on/off
+	//  - take an object
+	//  - work via command line
+	//  - check for config file(s)
 
 	// libararies
 	var request = require('request'),
@@ -24,9 +29,11 @@
 	
 	var settings = {};
 	
-	//settings.fields = ['text', 'href'];
-		
 	function claw(config) {
+	
+		if (__.isString(config)) {
+			config = require("./" + config);
+		}
 	
 		var pageToken = config.pages;
 	
@@ -46,10 +53,8 @@
 		settings.outputFolder = config.outputFolder;
 		settings.delayMS = config.delay * 1000;		
 				
-		// init	
-		
-		console.log("Starting scraper...");
-		
+		// init			
+		console.log("Starting scraper...");		
 		scraperLoop(settings.delayMS);		
 				
 		// functions
@@ -71,7 +76,7 @@
 		
 		function scrapePage(index) {
 		
-			var page = settings.pages[i];
+			var page = settings.pages[index];
 		
 			console.log("\nScraping " + page);
 		
@@ -139,7 +144,7 @@
 	
 	function importPageArr(page_token) {
 	
-		var inputArr = require(path.join("../../", page_token));
+		var inputArr = require(page_token);
 		var outputArr = new Array();
 		
 		inputArr.forEach(function(page) {
@@ -149,6 +154,12 @@
 		
 		return outputArr;
 	
-	}	
-
-	var exports = module.exports = claw;
+	}
+	
+	exports.init = claw;
+	
+	// command line version
+	var arg = process.argv[2];
+	if (__.isString(arg)) {
+		if (arg.substr('.json')) exports.init(arg);
+	}
