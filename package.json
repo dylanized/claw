@@ -1,6 +1,6 @@
 {
-  "name": "razorblade",
-  "description": "Simple web scraper",
+  "name": "claw",
+  "description": "Simple web scraper chassis",
   "version": "0.0.1",
   "author": {
     "name": "Dylan Hassinger",

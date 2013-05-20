@@ -1,4 +1,4 @@
-// pluck
+// claw
 
 	// TODOS
 	//	- return a usable results array
@@ -24,7 +24,7 @@
 	
 	//settings.fields = ['text', 'href'];
 		
-	function pluck(page_token, selector, field_config, output_folder, delay) {
+	function claw(page_token, selector, field_config, output_folder, delay) {
 	
 		if (__.isArray(page_token)) {
 			settings.pages = page_token;
@@ -145,4 +145,4 @@
 	
 	}	
 
-	var exports = module.exports = pluck;
+	var exports = module.exports = claw;

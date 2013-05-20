@@ -1,7 +1,7 @@
-razorblade
+claw
 ===
 
-A very simple web scraper.
+A very simple web scraper chassis.
 
 Takes:
 
@@ -9,11 +9,12 @@ Takes:
 - a selection to scrape
 - fields to pull out from within that section
 - an output folder
+- number of seconds to delay
 
-and it creates CSV and JSON files with the results. Razorblade creates a separate file for each page it scrapes.
+and it creates CSV and JSON files with the results. Claw creates a separate file for each page it scrapes.
 
 	// libararies
-	var razor = require('razorblade');
+	var claw = require('claw');
 		
 	// get settings
 	var page = 'http://www.bing.com/search?q=hello';
@@ -25,14 +26,14 @@ and it creates CSV and JSON files with the results. Razorblade creates a separat
 		"href" : "attr('href')"
 	};
 
-	razor(page, selector, fields, 'output', 3);
+	claw(page, selector, fields, 'output', 3);
 		
 Give it an array of pages, and it will save the results of each page to a separate file.
 
-    razor(['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'], selector, fields, 'output', 3);
+    claw(['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'], selector, fields, 'output', 3);
 	
-Pluck can also grab its page list from JSON file that is a list of urls (or an object with .href properties).	
+Claw can also grab its page list from JSON file that is a list of urls (or an object with .href properties).	
 
-	razor("pages.json", selector, fields, 'output', 3);
+	claw("pages.json", selector, fields, 'output', 3);
     
 Questions? Ideas? Hit me up on twitter - @dylanized
