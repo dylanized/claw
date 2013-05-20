@@ -14,6 +14,7 @@ Accepts parameters
 - an output folder
 - number of seconds to delay
 
+```js
     var claw = require('claw');
     	
     var claw_config = {
@@ -28,6 +29,7 @@ Accepts parameters
     }
     
     claw(claw_config);	
+```
 		
 Each page gets saved to a separate output file.
 
