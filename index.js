@@ -26,21 +26,25 @@
 	
 	//settings.fields = ['text', 'href'];
 		
-	function claw(page_token, selector, field_config, output_folder, delay) {
+	function claw(config) {
 	
-		if (__.isArray(page_token)) {
-			settings.pages = page_token;
-		} else if (page_token.substr('.json')) {
-			settings.pages = getPageArr(page_token);
-		} else if (__.isString(page_token)) {
-			settings.pages = [page_token];
+		var pageToken = config.pages;
+	
+		if (__.isString(pageToken)) {
+			if (pageToken.substr('.json')) {
+				settings.pages = importPageArr(pageToken);
+			} else {
+				settings.pages = [pageToken];		
+			}
+		} else {
+			settings.pages = pageToken;		
 		}
 
-		settings.selector = selector;
-		settings.delay = delay;
-		settings.fields = field_config;
-		settings.output_folder = output_folder;
-		settings.delayMS = delay * 1000;		
+		settings.selector = config.selector;
+		settings.delay = config.delay;
+		settings.fields = config.fields;
+		settings.outputFolder = config.outputFolder;
+		settings.delayMS = config.delay * 1000;		
 				
 		// init	
 		
@@ -102,7 +106,7 @@
 		function exportJSON(results, filename) {
 		
 			if (filename === undefined) filename = output_default;
-			export_file = path.join(settings.output_folder, filename + '.json');
+			export_file = path.join(settings.outputFolder, filename + '.json');
 			
 			console.log("Exporting " + export_file);
 			
@@ -113,7 +117,7 @@
 		function exportCSV(results, filename) {
 		
 			if (filename === undefined) filename = output_default;
-			export_file = path.join(output_folder, filename + '.csv');
+			export_file = path.join(settings.outputFolder, filename + '.csv');
 			
 			var fieldArr = new Array();
 			
@@ -133,7 +137,7 @@
 	
 	}
 	
-	function getPageArr(page_token) {
+	function importPageArr(page_token) {
 	
 		var inputArr = require(path.join("../../", page_token));
 		var outputArr = new Array();
