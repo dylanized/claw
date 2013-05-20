@@ -38,14 +38,14 @@ External Page List
 	
 Claw can also grab its page list from a JSON file that is a list of urls (or an object with .href properties). Instead of an array, just set "pages" to a file name and path.	
 
-    claw_config.pages = "page_list.json";
+    claw_config.pages = "pages.json";
     
 External Config
 ---
 
 Last but not lease, claw can take its entire configuration from a JSON file:
 
-    claw('claw_config.json');
+    claw('config.json');
     
 Command Line
 ---
