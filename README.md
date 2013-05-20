@@ -1,26 +1,20 @@
 claw
 ===
 
-A very simple web scraper chassis.
+A very simple web scraper chassis. Claw takes a web page (or list of pages), scrapes some info from those pages, then dumps the results to a JSON or CSV file.
 
-Takes:
+Accepts parameters
 
-- a page url
+- a page url, or array of URLs
 - a selection to scrape
 - fields to pull out from within that section
 - an output folder
 - number of seconds to delay
 
-and it creates CSV and JSON files with the results. Claw creates a separate file for each page it scrapes.
-
-	// libararies
 	var claw = require('claw');
 		
-	// get settings
-	var page = 'http://www.bing.com/search?q=hello';
-	
-	var selector = 'h3 a';
-	
+	var page = 'http://www.bing.com/search?q=hello';	
+	var selector = 'h3 a';	
 	var fields = {
 		"text" : "text()",
 		"href" : "attr('href')"
@@ -28,7 +22,7 @@ and it creates CSV and JSON files with the results. Claw creates a separate file
 
 	claw(page, selector, fields, 'output', 3);
 		
-Give it an array of pages, and it will save the results of each page to a separate file.
+Give claw an array of pages, and it will save the results of each page to a separate file.
 
     claw(['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'], selector, fields, 'output', 3);
 	

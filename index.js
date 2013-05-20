@@ -6,6 +6,7 @@
 	//  - create output folder if it doesn't exist
 	//  - accept a callback function
 	//  - add http user-agent override
+	//  - toggle exporting of each type on/off
 
 	// libararies
 	var request = require('request'),
