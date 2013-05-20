@@ -1,9 +1,28 @@
 {
   "name": "claw",
-  "description": "Simple web scraper chassis",
-  "version": "0.0.1",
-  "author": {
-    "name": "Dylan Hassinger",
-    "email": "d@dylanized.com"
+  "description": "Simple web scraper chassis, scrapes fields from a list of web pages and dumps the results to JSON/CSV files.",
+  "author": "Dylan Hassinger <d@dylanized.com>",
+  "version": "0.0.2",
+  "keywords": [
+    "scraper",
+    "csv",
+    "json",
+    "scrape",
+    "spider"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanized/claw.git"
+  },
+  "dependencies": {
+    "path": "~0.4.9",
+    "nconf": "~0.6.7",
+    "request": "~2.21.0",
+    "cheerio": "~0.11.0",
+    "fs": "0.0.0",
+    "csv": "~0.3.0",
+    "underscore": "~1.4.4",
+    "jsonfile": "0.0.1",
+    "json2csv": "~2.0.0"
   }
 }

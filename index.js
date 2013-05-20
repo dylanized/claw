@@ -1,10 +1,11 @@
-// claw
+// the claw
 
 	// TODOS
-	//	- return a usable results array
-	//  - fix relative paths in exports folder path
+	//  - fix ../../ paths in exports folder path
 	//  - text with different configs
 	//  - create output folder if it doesn't exist
+	//  - accept a callback function
+	//  - add http user-agent override
 
 	// libararies
 	var request = require('request'),
