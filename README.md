@@ -1,9 +1,9 @@
-claw
+CLAW
 ===
 
 A very simple web scraper chassis. Claw takes a web page (or list of pages), scrapes some info from those pages, then dumps the results to a JSON or CSV file.
 
-how to use
+How to Use
 ---
 
 Accepts parameters
@@ -31,18 +31,21 @@ Accepts parameters
 		
 Each page gets saved to a separate output file.
 
-configuration file
+External Page List
 ---
 	
 Claw can also grab its page list from a JSON file that is a list of urls (or an object with .href properties). Instead of an array, just set "pages" to a file name and path.	
 
     claw_config.pages = "page_list.json";
+    
+External Config
+---
 
 Last but not lease, claw can take its entire configuration from a JSON file:
 
     claw('claw_config.json');
     
-command line
+Command Line
 ---
 
 You can also use claw from the command line. First, install it globally:
@@ -53,7 +56,7 @@ Then run it in the same folder as your config file:
 
     claw config.json
     
-feedback
+Feedback
 ---
     
 Questions? Ideas? Hit me up on twitter - @dylanized
