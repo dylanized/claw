@@ -26,7 +26,7 @@ Give claw an array of pages, and it will save the results of each page to a sepa
 
     claw(['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'], selector, fields, 'output', 3);
 	
-Claw can also grab its page list from JSON file that is a list of urls (or an object with .href properties).	
+Claw can also grab its page list from a JSON file that is a list of urls (or an object with .href properties).	
 
 	claw("pages.json", selector, fields, 'output', 3);
     
