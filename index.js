@@ -8,18 +8,17 @@
 	//  - toggle exporting of each type on/off
 	//  - concat mode
 	//	- console.log colors
-
+	
 	// libararies
 	var request = require('request'),
 		path = require('path'),
 		cheerio = require('cheerio'),
 		fs = require('fs'),
-		csv = require('csv'),
 		__ = require('underscore'),
 		jsonfile = require('jsonfile'),
 		json2csv = require('json2csv');
 		
-	var allResults = new Array(); 	
+	var allResults = []; 	
 	var i = 0;	
 	var outputFolderDefault = 'output';
 	
@@ -27,8 +26,10 @@
 	
 	function claw(config) {
 	
-		if (__.isString(config)) var configObj = require("./" + config);
-		else var configObj = config;
+		var configObj;
+	
+		if (__.isString(config)) configObj = require("./" + config);
+		else configObj = config;
 			
 		var pageToken = configObj.pages;
 		
@@ -50,7 +51,7 @@
 		else settings.selector = "body";
 		
 		if (configObj.outputFolder) settings.outputFolder = config.outputFolder;
-		else if (__.isString(config)) settings.outputFolder = path.basename(config, '.json')
+		else if (__.isString(config)) settings.outputFolder = path.basename(config, '.json');
 		else settings.outputFolder = outputFolderDefault;
 				
 		// check if output folder exists						
@@ -95,10 +96,9 @@
 				
 					var output = {};
 					
-					for (var prop in settings.fields) {
-					
-					      var fieldJS = "output['" + prop + "'] = " + settings.fields[prop];
-						  eval(fieldJS);					      
+					for (var prop in settings.fields) {					
+						var fieldJS = "output['" + prop + "'] = " + settings.fields[prop];
+						eval(fieldJS);					      
 					}						
 					
 					results.push(output);
@@ -108,8 +108,10 @@
 				console.log(results);
 				allResults[index] = results;
 				
-				if (settings.pages.length == 1) var outfile = "output";
-				else var outfile = index;
+				var outfile;
+				
+				if (settings.pages.length === 1) outfile = "output";
+				else outfile = index;
 				
 				exportJSON(results, outfile);
 				exportCSV(results, outfile);
@@ -132,9 +134,9 @@
 		function exportCSV(results, filename) {
 		
 			if (filename === undefined) filename = "output";
-			export_file = path.join(settings.outputFolder, filename + '.csv');
+			var export_file = path.join(settings.outputFolder, filename + '.csv');
 			
-			var fieldArr = new Array();
+			var fieldArr = [];
 			
 			for (var prop in settings.fields) {
 			      fieldArr.push(prop);
@@ -143,7 +145,7 @@
 			json2csv({data: results, fields: fieldArr}, function(err, csv) {
 			  if (err) console.log(err);
 			  fs.writeFile(export_file, csv, function(err) {
-			    if (err) throw err;
+				if (err) throw err;
 			    console.log("Exporting " + export_file);
 			  });
 			});				
@@ -155,7 +157,7 @@
 	function importPageArr(page_token) {
 	
 		var inputArr = require(page_token);
-		var outputArr = new Array();
+		var outputArr = [];
 		
 		inputArr.forEach(function(page) {
 			if (__.isString(page)) outputArr.push(page);
