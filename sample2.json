@@ -1,0 +1,11 @@
+{
+	"pages" : "./pages.json",
+	"wraooer" : ".item",
+	"fields" : {
+		"title" : "$(sel).find('h2').text()",
+		"price" : "$(sel).find('p.price').text()",
+		"img" : "$(sel).find('img').attr('src')"
+	},
+	"delay" : 5,
+	"concat" : false
+}

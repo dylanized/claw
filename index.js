@@ -51,6 +51,9 @@
 		settings.fields 	= configObj.fields;		
 		settings.delayMS 	= configObj.delay * 1000;
 		
+		if (configObj.concat) settings.concat = configObj.concat;
+		else settings.concat = false;
+		
 		if (configObj.wrapper) settings.wrapper = configObj.wrapper;
 		else settings.wrapper = "body";
 		
@@ -112,8 +115,11 @@
 				console.log(results);
 				allResults[index] = results;
 				
-				exportJSON(results, index);
-				exportCSV(results, index);
+				if (settings.concat) var export_name = 'output';
+				else var export_name = index;
+				
+				exportJSON(results, export_name);
+				exportCSV(results, export_name);
 						
 			});		
 			
