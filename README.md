@@ -15,7 +15,7 @@ Accepts parameters
 - number of seconds to delay
 
 ```js
-	var claw = require('./index.js');
+	var claw = require('claw');
 		
 	var claw_config = {
 		pages : [
