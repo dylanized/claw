@@ -66,11 +66,11 @@ text,href
 External Config
 ---
 
-Claw can take its configuraction from a JSON file:
+Claw can import its configuration from a JSON file:
 
     claw('sample1.json');
     
-The json file looks like this:    
+The file looks like this:    
 
 ```js
 {
