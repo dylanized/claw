@@ -27,8 +27,13 @@
 	function claw(config) {
 	
 		var configObj;
-	
-		if (__.isString(config)) configObj = require("./" + config);
+		
+		if (__.isString(config)) {
+			var config_path;
+			if (config.search('/') == 1) config_path = config;
+			else config_path = path.join(process.cwd(), config);
+			configObj = require(config_path);
+		}	
 		else configObj = config;
 			
 		var pageToken = configObj.pages;
@@ -156,7 +161,12 @@
 	
 	function importPageArr(page_token) {
 	
-		var inputArr = require(page_token);
+		var json_path;
+		
+		if (page_token.search('/') == 1) json_path = config;
+		else json_path = path.join(process.cwd(), page_token);
+	
+		var inputArr = require(json_path);
 		var outputArr = [];
 		
 		inputArr.forEach(function(page) {

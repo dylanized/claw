@@ -18,7 +18,10 @@ Accepts parameters
 	var claw = require('./index.js');
 		
 	var claw_config = {
-		pages : ['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'],
+		pages : [
+			'http://www.bing.com/search?q=hello',
+			'http://www.bing.com/search?q=goodbye'
+		],
 		selector : 'h3',
 		fields : {
 			"text" : "$(sel).find('a').text()",
@@ -40,7 +43,7 @@ Here's what the exported JSON looks like:
 ```json
 [
     {
-        "text": "HELLO! Online: celeb & royal news, magazine, babies, weddings, É",
+        "text": "HELLO! Online: celeb & royal news, magazine, babies, weddings",
         "href": "http://www.hellomagazine.com/"
     },
     {
@@ -74,7 +77,10 @@ The file looks like this:
 
 ```js
 {
-	"pages" : ["http://www.bing.com/search?q=hello", "http://www.bing.com/search?q=goodbye"],
+	"pages" : [
+		"http://www.bing.com/search?q=hello",
+		"http://www.bing.com/search?q=goodbye"
+	],
 	"selector" : "h3",
 	"fields" : {
 		"href" : "$(sel).find('a').attr('href')"
