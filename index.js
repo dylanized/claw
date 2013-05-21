@@ -25,20 +25,20 @@
 		
 	var allResults = new Array(); 	
 	var i = 0;	
-	var output_default = 'output';
+	var outputFolderDefault = 'output';
 	
 	var settings = {};
 	
 	function claw(config) {
 	
 		if (__.isString(config)) {
-			config = require("./" + config);
+			var configObj = require("./" + config);
 		}
-	
-		var pageToken = config.pages;
-	
+			
+		var pageToken = configObj.pages;
+		
 		if (__.isString(pageToken)) {
-			if (pageToken.substr('.json')) {
+			if (pageToken.search('.json') > -1) {
 				settings.pages = importPageArr(pageToken);
 			} else {
 				settings.pages = [pageToken];		
@@ -46,12 +46,22 @@
 		} else {
 			settings.pages = pageToken;		
 		}
-
-		settings.selector = config.selector;
-		settings.delay = config.delay;
-		settings.fields = config.fields;
-		settings.outputFolder = config.outputFolder;
-		settings.delayMS = config.delay * 1000;		
+		
+		settings.delay 		= configObj.delay;
+		settings.fields 	= configObj.fields;		
+		settings.delayMS 	= configObj.delay * 1000;
+		
+		if (configObj.wrapper) settings.wrapper = configObj.wrapper;
+		else settings.wrapper = "body";
+		
+		if (configObj.outputFolder) settings.outputFolder = config.outputFolder;
+		else if (config) settings.outputFolder = path.basename(config, '.json')
+		else settings.outputFolder = outputFolderDefault;
+				
+		// check if output folder exists						
+		if (!fs.existsSync(settings.outputFolder)) {			
+		  	fs.mkdirSync(settings.outputFolder);
+		}
 				
 		// init			
 		console.log("Starting scraper...");		
@@ -83,15 +93,15 @@
 			request(page, function(err, resp, body){
 			
 				$ = cheerio.load(body);
-				var selection = $(settings.selector);
 				var results = [];
 				
-				$(selection).each(function(i, sel){
+				$(settings.wrapper).each(function(i, sel){
 				
 					var output = {};
 					
 					for (var prop in settings.fields) {
-					      fieldJS = "output[prop] = $(sel)." + settings.fields[prop];
+					
+					      var fieldJS = "output['" + prop + "'] = " + settings.fields[prop];
 						  eval(fieldJS);					      
 					}						
 					
@@ -99,6 +109,7 @@
 					
 				});
 
+				console.log(results);
 				allResults[index] = results;
 				
 				exportJSON(results, index);
@@ -110,7 +121,7 @@
 	
 		function exportJSON(results, filename) {
 		
-			if (filename === undefined) filename = output_default;
+			if (filename === undefined) filename = outputFolderDefault;
 			export_file = path.join(settings.outputFolder, filename + '.json');
 			
 			console.log("Exporting " + export_file);
@@ -121,7 +132,7 @@
 	
 		function exportCSV(results, filename) {
 		
-			if (filename === undefined) filename = output_default;
+			if (filename === undefined) filename = outputFolderDefault;
 			export_file = path.join(settings.outputFolder, filename + '.csv');
 			
 			var fieldArr = new Array();
@@ -161,5 +172,5 @@
 	// command line version
 	var arg = process.argv[2];
 	if (__.isString(arg)) {
-		if (arg.substr('.json')) exports.init(arg);
+		if (arg.search('.json') > -1) exports.init(arg);
 	}

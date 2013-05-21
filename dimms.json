@@ -1,0 +1,8 @@
+{
+	"pages" : "http://www.newark.com/browse-for-products",
+	"wrapper" : "#categories a",
+	"fields" : {
+		"href" : "$(sel).attr('href')"
+	},
+	"delay" : 5
+}
