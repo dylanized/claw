@@ -30,7 +30,7 @@
 		
 		if (__.isString(config)) {
 			var config_path;
-			if (config.search('/') == 1) config_path = config;
+			if (config.search('/') == 1 || config.search('.') == 1) config_path = config;
 			else config_path = path.join(process.cwd(), config);
 			configObj = require(config_path);
 		}	
@@ -163,7 +163,7 @@
 	
 		var json_path;
 		
-		if (page_token.search('/') == 1) json_path = config;
+		if (page_token.search('/') == 1 || config.search('.') == 1) json_path = config;
 		else json_path = path.join(process.cwd(), page_token);
 	
 		var inputArr = require(json_path);

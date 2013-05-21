@@ -1,6 +1,6 @@
 {
-	"pages" : "./pages.json",
-	"wraooer" : ".item",
+	"pages" : "pages.json",
+	"selector" : ".item",
 	"fields" : {
 		"title" : "$(sel).find('h2').text()",
 		"price" : "$(sel).find('p.price').text()",
