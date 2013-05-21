@@ -15,37 +15,69 @@ Accepts parameters
 - number of seconds to delay
 
 ```js
-    var claw = require('claw');
-    	
-    var claw_config = {
-    	pages : ['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'],
-    	selector : 'h3 a',
-    	fields : {
-    		"text" : "text()",
-    		"href" : "attr('href')"
-    	},
-    	outputFolder : 'output',
-    	delay : 3
-    }
-    
-    claw(claw_config);	
+	var claw = require('./index.js');
+		
+	var claw_config = {
+		pages : ['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'],
+		selector : 'h3',
+		fields : {
+			"text" : "$(sel).find('a').text()",
+			"href" : "$(sel).find('a').attr('href')"
+		},
+		delay : 3
+	}
+	
+	claw.init(claw_config);		
 ```
+
+Exported Data
+---
 		
 Each page gets saved to a separate output file.
 
-External Page List
----
-	
-Claw can also grab its page list from a JSON file that is a list of urls (or an object with .href properties). Instead of an array, just set "pages" to a file name and path.	
+Here's what the JSON looks like:
 
-    claw_config.pages = "pages.json";
+```href
+"http://www.hellomagazine.com/"
+"http://en.wikipedia.org/wiki/Hello"
+"http://dictionary.reference.com/browse/hello"
+
+```
+
+and here's what the CSV looks like:
+
+```[
+    {
+        "href": "http://www.hellomagazine.com/"
+    },
+    {
+        "href": "http://en.wikipedia.org/wiki/Hello"
+    },
+    {
+        "href": "http://dictionary.reference.com/browse/hello"
+    }
+]
+
+```
     
 External Config
 ---
 
-Last but not lease, claw can take its entire configuration from a JSON file:
+Claw can take its onfiguraction from a JSON file:
 
-    claw('config.json');
+    claw('sample1.json');
+    
+The json file looks like this:    
+
+```{
+	"pages" : ["http://www.bing.com/search?q=hello", "http://www.bing.com/search?q=goodbye"],
+	"selector" : "h3",
+	"fields" : {
+		"href" : "$(sel).find('a').attr('href')"
+	},
+	"delay" : 5
+}
+```
     
 Command Line
 ---
@@ -56,7 +88,18 @@ You can also use claw from the command line. First, install it globally:
 
 Then run it in the same folder as your config file:
 
-    claw config.json
+    claw sample1.json
+    
+This will create a folder called sample1, with the results.
+
+
+External Page List
+---
+	
+Claw can grab its page list from a JSON file that is a list of urls (or an object with .href properties). Instead of an array, just set "pages" to a file name and path.	
+
+    claw_config.pages = "pages.json";
+
     
 Feedback
 ---

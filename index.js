@@ -3,15 +3,11 @@
 // the claw
 
 	// TODOS
-	//  - fix ../../ paths in exports folder path
-	//  - text with different configs
-	//  - create output folder if it doesn't exist
-	//  - accept a callback function
+	//  - accept a callback function?
 	//  - add http user-agent override
 	//  - toggle exporting of each type on/off
-	//  - take an object
-	//  - work via command line
-	//  - check for config file(s)
+	//  - concat mode
+	//	- console.log colors
 
 	// libararies
 	var request = require('request'),
@@ -31,9 +27,8 @@
 	
 	function claw(config) {
 	
-		if (__.isString(config)) {
-			var configObj = require("./" + config);
-		}
+		if (__.isString(config)) var configObj = require("./" + config);
+		else var configObj = config;
 			
 		var pageToken = configObj.pages;
 		
@@ -51,14 +46,11 @@
 		settings.fields 	= configObj.fields;		
 		settings.delayMS 	= configObj.delay * 1000;
 		
-		if (configObj.concat) settings.concat = configObj.concat;
-		else settings.concat = false;
-		
-		if (configObj.wrapper) settings.wrapper = configObj.wrapper;
-		else settings.wrapper = "body";
+		if (configObj.selector) settings.selector = configObj.selector;
+		else settings.selector = "body";
 		
 		if (configObj.outputFolder) settings.outputFolder = config.outputFolder;
-		else if (config) settings.outputFolder = path.basename(config, '.json')
+		else if (__.isString(config)) settings.outputFolder = path.basename(config, '.json')
 		else settings.outputFolder = outputFolderDefault;
 				
 		// check if output folder exists						
@@ -85,6 +77,7 @@
 		
 		function endLoop() {
 			console.log("\n" + i + " pages scraped!");
+			
 		}
 		
 		function scrapePage(index) {
@@ -98,7 +91,7 @@
 				$ = cheerio.load(body);
 				var results = [];
 				
-				$(settings.wrapper).each(function(i, sel){
+				$(settings.selector).each(function(i, sel){
 				
 					var output = {};
 					
@@ -115,11 +108,11 @@
 				console.log(results);
 				allResults[index] = results;
 				
-				if (settings.concat) var export_name = 'output';
-				else var export_name = index;
+				if (settings.pages.length == 1) var outfile = "output";
+				else var outfile = index;
 				
-				exportJSON(results, export_name);
-				exportCSV(results, export_name);
+				exportJSON(results, outfile);
+				exportCSV(results, outfile);
 						
 			});		
 			
@@ -127,7 +120,7 @@
 	
 		function exportJSON(results, filename) {
 		
-			if (filename === undefined) filename = outputFolderDefault;
+			if (filename === undefined) filename = "output";
 			export_file = path.join(settings.outputFolder, filename + '.json');
 			
 			console.log("Exporting " + export_file);
@@ -138,7 +131,7 @@
 	
 		function exportCSV(results, filename) {
 		
-			if (filename === undefined) filename = outputFolderDefault;
+			if (filename === undefined) filename = "output";
 			export_file = path.join(settings.outputFolder, filename + '.csv');
 			
 			var fieldArr = new Array();

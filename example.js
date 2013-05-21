@@ -1,17 +1,17 @@
 // claw app example
 
-	// libararies
 	var claw = require('./index.js');
 		
-	/*var claw_config = {
+	var claw_config = {
 		pages : ['http://www.bing.com/search?q=hello', 'http://www.bing.com/search?q=goodbye'],
-		selector : 'h3 a',
+		selector : 'h3',
 		fields : {
-			"text" : "text()",
-			"href" : "attr('href')"
+			"text" : "$(sel).find('a').text()",
+			"href" : "$(sel).find('a').attr('href')"
 		},
-		outputFolder : 'output',
 		delay : 3
-	}*/
+	}
 	
-	claw.init('config.json');	
+	// claw.init('./sample1.json');	
+	
+	claw.init(claw_config);		

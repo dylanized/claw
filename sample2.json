@@ -6,6 +6,5 @@
 		"price" : "$(sel).find('p.price').text()",
 		"img" : "$(sel).find('img').attr('src')"
 	},
-	"delay" : 5,
-	"concat" : false
+	"delay" : 5
 }

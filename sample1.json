@@ -1,8 +1,8 @@
 {
 	"pages" : ["http://www.bing.com/search?q=hello", "http://www.bing.com/search?q=goodbye"],
-	"wrapper" : "h3",
+	"selector" : "h3",
 	"fields" : {
-		"href" : "$(sel).find(a).attr('href')"
+		"href" : "$(sel).find('a').attr('href')"
 	},
 	"delay" : 5
 }
