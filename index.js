@@ -123,7 +123,7 @@
 		function exportJSON(results, filename) {
 		
 			if (filename === undefined) filename = "output";
-			export_file = path.join(settings.outputFolder, filename + '.json');
+			var export_file = path.join(settings.outputFolder, filename + '.json');
 			
 			console.log("Exporting " + export_file);
 			
