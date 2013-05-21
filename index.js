@@ -29,9 +29,18 @@
 		var configObj;
 		
 		if (__.isString(config)) {
+			if (config.search('.json') < 0) {
+				config += '.json';
+			}		
 			var config_path;
 			if (config.search('/') == 1 || config.search('.') == 1) config_path = config;
 			else config_path = path.join(process.cwd(), config);
+			
+			if (!fs.existsSync(config_path)) {
+			  	console.log(config + " not found!");
+			  	process.kill();
+			}
+			
 			configObj = require(config_path);
 		}	
 		else configObj = config;
@@ -183,5 +192,5 @@
 	// command line version
 	var arg = process.argv[2];
 	if (__.isString(arg)) {
-		if (arg.search('.json') > -1) exports.init(arg);
+		exports.init(arg);
 	}

@@ -1,4 +1,9 @@
-0.0.7 / 2013-05-21
+0.0.9 / 2013-05-21
+==================
+  * Fails gracefully if no config file found
+  * Appends .json if left out
+  
+  0.0.7 / 2013-05-21
 ==================
   * Fixed relative folder bug
   
