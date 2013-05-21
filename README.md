@@ -90,7 +90,7 @@ Then run it in the same folder as your config file:
 
     claw sample1.json
     
-This will create a folder called sample1, with the results.
+This will create a folder called sample1, with your results.
 
 
 External Page List
