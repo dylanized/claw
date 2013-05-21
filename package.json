@@ -2,7 +2,7 @@
   "name": "claw",
   "description": "Simple web scraper chassis, scrapes fields from a list of web pages and dumps the results to JSON/CSV files.",
   "author": "Dylan Hassinger <d@dylanized.com>",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "keywords": [
     "scraper",
     "csv",

@@ -37,7 +37,8 @@ Each page gets saved to a separate output file.
 
 Here's what the JSON looks like:
 
-```href
+```csv
+href
 "http://www.hellomagazine.com/"
 "http://en.wikipedia.org/wiki/Hello"
 "http://dictionary.reference.com/browse/hello"
@@ -46,7 +47,8 @@ Here's what the JSON looks like:
 
 and here's what the CSV looks like:
 
-```[
+```json
+[
     {
         "href": "http://www.hellomagazine.com/"
     },
@@ -69,7 +71,8 @@ Claw can take its onfiguraction from a JSON file:
     
 The json file looks like this:    
 
-```{
+```js
+{
 	"pages" : ["http://www.bing.com/search?q=hello", "http://www.bing.com/search?q=goodbye"],
 	"selector" : "h3",
 	"fields" : {
@@ -104,4 +107,4 @@ Claw can grab its page list from a JSON file that is a list of urls (or an objec
 Feedback
 ---
     
-Questions? Ideas? Hit me up on twitter - @dylanized
+Questions? Ideas? Hit me up on twitter - [@dylanized](http://twitter.com/dylanized)
