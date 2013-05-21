@@ -42,7 +42,6 @@ href
 "http://www.hellomagazine.com/"
 "http://en.wikipedia.org/wiki/Hello"
 "http://dictionary.reference.com/browse/hello"
-
 ```
 
 and here's what the CSV looks like:
@@ -59,13 +58,12 @@ and here's what the CSV looks like:
         "href": "http://dictionary.reference.com/browse/hello"
     }
 ]
-
 ```
     
 External Config
 ---
 
-Claw can take its onfiguraction from a JSON file:
+Claw can take its configuraction from a JSON file:
 
     claw('sample1.json');
     
