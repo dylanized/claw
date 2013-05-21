@@ -35,29 +35,32 @@ Exported Data
 		
 Each page gets saved to a separate output file.
 
-Here's what the JSON looks like:
-
-```csv
-href
-"http://www.hellomagazine.com/"
-"http://en.wikipedia.org/wiki/Hello"
-"http://dictionary.reference.com/browse/hello"
-```
-
-and here's what the CSV looks like:
+Here's what the exported JSON looks like:
 
 ```json
 [
     {
+        "text": "HELLO! Online: celeb & royal news, magazine, babies, weddings, É",
         "href": "http://www.hellomagazine.com/"
     },
     {
+        "text": "Hello - Wikipedia, the free encyclopedia",
         "href": "http://en.wikipedia.org/wiki/Hello"
     },
     {
+        "text": "Hello | Define Hello at Dictionary.com",
         "href": "http://dictionary.reference.com/browse/hello"
     }
 ]
+```
+
+and here's the CSV:
+
+```csv
+text,href
+"HELLO! Online: celeb & royal news, magazine, babies, weddings, É","http://www.hellomagazine.com/"
+"Hello - Wikipedia, the free encyclopedia","http://en.wikipedia.org/wiki/Hello"
+"Hello | Define Hello at Dictionary.com","http://dictionary.reference.com/browse/hello"
 ```
     
 External Config
